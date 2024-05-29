@@ -1,0 +1,524 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.wave-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center ;
+    min-height: 100vh;
+    width: 100%;
+    background: #ebbcd8;
+    position: relative;
+}
+.wave-header #div-comeco{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 100px;
+}
+#div-comeco h3, #div-comeco h1{
+    color: #862f66;
+}
+#icon-button{
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 55px;
+    color: #862f66;
+}
+a#icon{
+    text-decoration: none !important;
+}
+#icon .bi {
+    color: #862f66; 
+}
+.btn-primary {
+    background-color: #862f66 !important ; 
+    border-color: #862f66 !important; 
+}
+#sobre {
+    height: 100vh;
+    background-color: #862f66;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative; 
+
+}
+#conteudo-sobre{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    color: #ebbcd8;
+    top:  10px;
+}
+#conteudo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.div-conteudo{
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+#div-img{
+    width: 380px;
+    height: 380px;
+    background-color: #ebbcd8;
+    box-shadow: 5px 5px 5px #b87fa1d7; 
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    bottom: 40px;
+}
+#p-conteudo{
+    font-size: 25px;
+}
+.wave-header svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+#sobre svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+nav{
+    background-color: #ebbcd8;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+#menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.a-nav{
+    text-decoration: none;
+    color: #862f66;
+    font-size: 20px;
+    
+}
+.div-nav{
+    width: 40%;
+    }
+nav #img-logo{
+    width: 10%;
+}
+#serviços{
+    height: 100vh;
+    background-color: #ebbcd8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; 
+    color: #862f66;
+    overflow: hidden;
+}
+#h3-serviço{
+    width: 100%;
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#serviços svg{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+#section-serviço{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+.a-serviço {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #862f66;
+    width: calc(30% - 10px);
+    height: 100px;
+    margin: 15px 5px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.a-serviço:hover {
+    background-color: #ebbcd8;
+    color: #862f66;
+}
+
+.div-serviço {
+    width: 100%;
+    height: 100px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*login*/
+#div-img-login{
+    overflow: hidden;
+    position: absolute;
+    left: 250px;
+    bottom: -300px;
+}
+#img-login{
+    width: 750px ;
+}
+#main-login{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    overflow: hidden;
+}
+#direita{
+    width: 40%;
+    height: 100vh;
+    background-color: #ebbcd8;
+    color: #862f66;
+}
+#form-login{
+    width: 50%;
+    color: #ebbcd8;
+    z-index: 1;
+    font-size: 28px;
+}
+#esquerda{
+    width: 60%;
+    height: 100vh;
+    background-color: #862f66;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#button-login{
+    width: 80%;
+    font-size: 28px;
+    background-color: #ebbcd8 !important;
+    color: #862f66;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+#button-login,#button-cadastro:hover {
+    background-color: #862f66 !important;
+    color: #ebbcd8;
+}
+#exampleInputPassword1, #exampleInputEmail1, #button-login{
+    margin: 5px;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+#a-login{
+    text-decoration: none;
+    color: #ebbcd8;
+
+}
+#a-login:hover{
+    color: #ffffff;
+}
+.h3-esquerda{
+    color: #ebbcd8;
+}
+
+
+
+
+/*cadastro*/
+#main-cadastro{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    overflow: hidden;
+}
+#direita-cadastro{
+    width: 60%;
+    height: 100vh;
+    background-color: #862f66;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
+}
+#esquerda-cadastro{
+    width: 40%;
+    height: 100vh;
+    background-color: #ebbcd8;
+    color: #862f66;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.h1-cadastro{
+    margin:  5px 15px 0px 0px;
+
+}
+#div-img-cadastro{
+    margin-top: 100px!important;
+    position: absolute;
+    right: 0px;
+    bottom: -300px;
+    z-index: 1;
+
+}
+#img-cadastro{
+    width: 830px ;
+}
+#form-cadastro{
+    width: 70%;
+    height: 450px;
+    font-size: 28px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    color: #ebbcd8;
+    z-index: 1;
+}
+#button-cadastro{
+    /* left: 340px;
+    bottom: 100px; */
+    font-size: 28px;
+    width: 250px;
+    height: 45px;
+    background-color: #ebbcd8 !important;
+    color: #862f66;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* agendamento */
+.a-nav-agendar{
+    color:#ebbcd8;
+    text-decoration: none;
+}
+.nav-agendar{
+    background-color: #862f66;
+}
+.wave-header-agendar {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #862f66;
+}
+
+.wave-header-agendar svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+#h1-agendar{
+    position: absolute;
+    top: 100px;
+    color: #ebbcd8 !important;
+    font-size: 35px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#form-agendar{
+    width: 50%;
+    position: absolute;
+    top: 200px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    color: #ebbcd8;
+    background-color: #fff;
+}
+#time_toooo, #data, #procedimento, #time_from{
+    background-color: #862f66;
+    width: 250px;
+}
+
+#time_from{
+    position: relative;
+    left: -15px;
+}
+#procedimento,#data,#button-agendar, #time_from, #time_to{
+    margin: 0px 15px !important;
+    width: 250px !important;
+    height: 40px;
+}
+
+
+#button-agendar{
+    font-size: 28px;
+    width: 250px;
+    background-color: #ebbcd8 !important;
+    color: #862f66;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px !important;
+}
+#button-agendar:hover{
+    background-color: #862f66 !important;
+    color: #ebbcd8;
+}
+/* contato */   
+
+#contato {
+
+    min-height: 100vh;
+    background-color: #862f66;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative; 
+
+}
+#div-contato svg{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+#h3-contato{
+    width: 100%;
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#p-contato{
+    font-size: 18px;
+}
+#conteudo-contato{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    color: #ebbcd8;
+    top:  10px;
+}
+#div-contato svg{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+#img-contato{
+
+    height: 200px!important;
+    margin-right: 250px;
+   margin-top: 60px;
+    
+}
+/*Finalizado*/
+#div-inicial{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50px;
+    color: #862f66;
+}
+#div-finalizado{
+    position: absolute;
+    top: 200px;
+    width: 80%;
+    border-top: 1px solid #862f66; 
+    border-bottom: 1px solid #862f66;
+    color: #862f66;
+}
+#a-finalizado{
+    position: absolute;
+    bottom: 250px;
+    z-index: 1;
+    text-decoration: none;
+    color: #862f66;
+}
+#a-finalizado:hover{
+    color: #2c1825;
+}
+/*meus agendamentos*/
+#body-agendamentos{
+    background-color: #862f66;
+
+}
+#div-agen{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ebbcd8;
+    background-color: #862f66;
+    position: relative;
+}
+#div-agen svg{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    
+}
+#h1-agen{
+    position: absolute;
+    top: 80px;
+}
+#section-agen{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#div-fim{
+    position: absolute;
+    top: 200px;
+    width: 80%;
+    border-top: 1px solid #ebbcd8; 
+    border-bottom: 1px solid #ebbcd8;
+    color: #ebbcd8;
+}
