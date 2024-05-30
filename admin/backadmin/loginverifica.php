@@ -4,6 +4,7 @@
 
      $email = $_POST['mail-login'];
      $senha = $_POST['senha-login'];
+     $mens = "";
 
         if(!empty($email) && !empty($senha)) {
            
@@ -34,14 +35,16 @@
                     }
                     exit(); 
                 } else {
-                    echo "Email ou senha incorretas.";
+                    $mens = "Email ou senha incorretas.";
                 }
 
             } else {
-                echo "Email não encontrada.";
+                $mens = "Email não encontrada.";
             }
         }
-    
+        $_SESSION['status_response'] = array('mens' => $mens);
+
+        header("Location: ../../index.php");
 
 
 ?>

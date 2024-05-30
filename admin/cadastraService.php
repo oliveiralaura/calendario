@@ -2,7 +2,7 @@
   require_once '../back/dbconfig.php';
   session_start();
 
-if (!isset($_SESSION['email']) || $_SESSION['user_level'] !== 'admin') {
+if (!isset($_SESSION['email']) || $_SESSION['user_level'] !== 'admin' && $_SESSION['user_level'] !== 'master') {
     header('Location: ../login.php');
     exit();
 }

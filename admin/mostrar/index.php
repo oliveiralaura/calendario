@@ -1,36 +1,17 @@
 <?php
-    require_once '../../back/dbconfig.php';
+    session_start();
 
-    if (!isset($_SESSION['email']) || ($_SESSION['user_level'] !== 'admin' && $_SESSION['user_level'] !== 'master')) {
+    if (!isset($_SESSION['email']) || $_SESSION['user_level'] !== 'admin' && $_SESSION['user_level'] !== 'master') {
         header('Location: ../../login.php');
         exit();
     }
-    
-
-    $sql_procede = "SELECT procedimentos.id_procedimento, procedimentos.nome_procedimento,  procedimentos.duracao_procedimento, procedimentos.valor_procedimento, servicos.nome_servico FROM `procedimentos` INNER join servicos on procedimentos.servicos_id_servicos = servicos.id_servicos;";
-    $result_procede = $db->query($sql_procede);
-
-    if (mysqli_num_rows($result_procede) > 0) {
-        while ($user = mysqli_fetch_array($result_procede)) {
-            $dados_procede[] = array(
-                'id' => $user['id_procedimento'],
-                'profissional' => $user['nome_procedimento'],
-                'duração' => $user['duracao_procedimento'],
-                'valor' => $user['valor_procedimento'],
-                'serviço' => $user['nome_servico']
-            );
-        }
-    } else {
-        echo 'Nenhum registro de usuários';
-        exit;
-    }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de serviços</title>
+    <title>Calendário</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .navbar {
@@ -38,6 +19,18 @@
         }
         .navbar-brand, .navbar-nav .nav-link {
             color: #000!important; /* Cor dos links na barra de navegação */
+        }
+        .calendar {
+            margin-top: 20px;
+        }
+        .calendar table {
+            width: 100%;
+        }
+        .calendar th, .calendar td {
+            text-align: center;
+        }
+        .calendar .btn {
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -71,7 +64,7 @@
                         <a class="nav-link" href="../../index.php">Site</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../mostrar/index.php">Calendário</a>
+                        <a class="nav-link" href="index.php">Calendário</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../backadmin/sair.php">Sair</a>
@@ -81,44 +74,104 @@
         </div>
     </nav>
 
-    <main class="container">
-        <?php if (isset($_GET['message'])): ?>
-            <div class="alert alert-success">
-                <?php echo $_GET['message']; ?>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="calendar">
+                    <div class="d-flex justify-content-between mb-3">
+                        <button id="prevMonthBtn" class="btn btn-primary">Mês Anterior</button>
+                        <h2 id="currentMonth">Maio 2024</h2>
+                        <button id="nextMonthBtn" class="btn btn-primary">Próximo Mês</button>
+                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>D</th>
+                                <th>S</th>
+                                <th>T</th>
+                                <th>Q</th>
+                                <th>Q</th>
+                                <th>S</th>
+                                <th>S</th>
+                            </tr>
+                        </thead>
+                        <tbody id="calendarBody">
+                            <!-- Os dias do calendário serão gerados aqui -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        <?php endif; ?>
-
-        <div class="row mt-4 rounded m-2 p-2 d-flex border">
-            <div class="col">ID</div>
-            <div class="col">Procedimento</div>
-            <div class="col">Duração</div>
-            <div class="col">Valor</div>
-            <div class="col">Serviço</div>
-            <div class="col"></div>
-            <div class="col"></div>
         </div>
-        <?php foreach($dados_procede as $retorno): ?>
-            <div class="row mt-4 rounded m-2 p-2 d-flex border">
-                <div class="col"><?php echo $retorno['id']; ?></div>
-                <div class="col"><?php echo $retorno['profissional']; ?></div>
-                <div class="col"><?php echo $retorno['duração']; ?></div>
-                <div class="col"><?php echo $retorno['valor']; ?></div>
-                <div class="col"><?php echo $retorno['serviço']; ?></div>
-                <div class="col">
-                    <a href="../backadmin/edit/edit_procede.php?id=<?php echo $retorno['id']; ?>" class="btn btn-success">Update</a>
-                </div>
+    </div>
 
-                <div class="col">
-                    <form action="../backadmin/delete_procede.php" method="post" onsubmit="return confirm('Tem certeza que deseja excluir este procedimento?');">
-                        <input type="hidden" name="id_procedimento" value="<?php echo $retorno['id']; ?>">
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </div>
-            </div>
-        <?php endforeach; ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const prevMonthBtn = document.getElementById('prevMonthBtn');
+            const nextMonthBtn = document.getElementById('nextMonthBtn');
+            const currentMonthText = document.getElementById('currentMonth');
+            const calendarBody = document.getElementById('calendarBody');
 
-    </main>
+            let currentMonth = 5; // Maio
+            let currentYear = 2024;
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            renderCalendar(currentMonth, currentYear);
+
+            prevMonthBtn.addEventListener('click', function() {
+                currentMonth--;
+                if (currentMonth < 1) {
+                    currentMonth = 12;
+                    currentYear--;
+                }
+                renderCalendar(currentMonth, currentYear);
+            });
+
+            nextMonthBtn.addEventListener('click', function() {
+                currentMonth++;
+                if (currentMonth > 12) {
+                    currentMonth = 1;
+                    currentYear++;
+                }
+                renderCalendar(currentMonth, currentYear);
+            });
+
+            function renderCalendar(month, year) {
+                currentMonthText.textContent = `${getMonthName(month)} ${year}`;
+                calendarBody.innerHTML = ''; // Limpa o conteúdo atual do corpo do calendário
+
+                const daysInMonth = new Date(year, month, 0).getDate();
+                const firstDay = new Date(year, month - 1, 1).getDay();
+
+                let currentDay = 1;
+                for (let i = 0; i < 6; i++) {
+                    const row = document.createElement('tr');
+                    for (let j = 0; j < 7; j++) {
+                        if ((i === 0 && j < firstDay) || currentDay > daysInMonth) {
+                            row.innerHTML += '<td></td>';
+                        } else {
+                            row.innerHTML += `<td class="calendar-day" data-day="${currentDay}" data-month="${month}" data-year="${year}">${currentDay}</td>`;
+                            currentDay++;
+                        }
+                    }
+                    calendarBody.appendChild(row);
+                    if (currentDay > daysInMonth) break;
+                }
+
+                // Adiciona o evento de clique aos dias do calendário
+                document.querySelectorAll('.calendar-day').forEach(day => {
+                    day.addEventListener('click', function() {
+                        const selectedDay = this.getAttribute('data-day');
+                        const selectedMonth = this.getAttribute('data-month');
+                        const selectedYear = this.getAttribute('data-year');
+                        window.location.href = `details.php?day=${selectedDay}&month=${selectedMonth}&year=${selectedYear}`;
+                    });
+                });
+            }
+
+            function getMonthName(month) {
+                const monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+                return monthNames[month - 1];
+            }
+        });
+    </script>
 </body>
 </html>
